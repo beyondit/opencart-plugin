@@ -13,41 +13,40 @@
         }
     ],
     "support": {
-            "email": "support@bitpay.com",
-            "issues": "https://github.com/bitpay/opencart-plugin/issues"
-        },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "opencart/opencart",
-                "version": "2.0.0.0",
-                "dist": {
-                    "url": "https://github.com/opencart/opencart/archive/2.0.0.0.zip",
-                    "type": "zip"
-                },
-                "source": {
-                    "url": "https://github.com/opencart/opencart",
-                    "type": "git",
-                    "reference": "7911c76c43e29ddc1e4168f36dff6a0be6179719"
-                }
-            }
-        }
-    ],
+        "email": "support@bitpay.com",
+        "issues": "https://github.com/bitpay/opencart-plugin/issues"
+    },
     "require": {
         "php" : ">=5.4.0",
-        "bitpay/php-client": "dev-master#9338b27fbc7919e3df32caacf0591525c74c58b8"
+        "bitpay/php-client": "~2.2",
+        "beyondit/opencart-extension-installer": "*"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.*",
         "squizlabs/php_codesniffer": "2.*",
         "codegyre/robo": "*",
-        "opencart/opencart" : "2.0.0.0",
+        "opencart/opencart" : "2.3.0.2",
         "vlucas/phpdotenv": "~1.1.0"
     },
     "minimum-stability": "stable",
     "config": {
         "bin-dir": "bin/",
         "preferred-install": "source"
+    },
+    "extra" : {
+        "src-dir" : "src/upload" ,
+        "mappings" : [
+            "admin/controller/extension/payment/bitpay.php" ,
+            "admin/language/en-gb/extension/payment/bitpay.php" ,
+            "admin/view/template/extension/payment/bitpay.tpl" ,
+            "admin/view/image/payment/bitpay.png" ,
+            "admin/view/image/payment/bitpay_banner.png" ,
+            "admin/view/image/payment/bitpay_logo.svg" ,
+            "catalog/controller/extension/payment/bitpay.php" ,
+            "catalog/language/en-gb/extension/payment/bitpay.php" ,
+            "catalog/model/extension/payment/bitpay.php" ,
+            "catalog/view/theme/default/template/extension/payment/bitpay.tpl" ,
+            "system/library/bitpay.php"
+        ]
     }
 }

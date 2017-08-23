@@ -147,9 +147,9 @@ class ControllerExtensionPaymentBitpay extends Controller {
 			$this->log('error', 'Cannot prepare invoice without `total`');
 			throw Exception('Cannot prepare invoice without `total`');
 		}
-                
-                (float)$foo = $order_info['total']*$order_info['currency_value'];
-                $total = (float)number_format((float)$foo, 2, '.', ''); 
+
+		(float)$foo = $order_info['total']*$order_info['currency_value'];
+		$total = (float)number_format((float)$foo, 2, '.', '');
 		$invoice->setPrice($total);
 
 		// Send Buyer Information?

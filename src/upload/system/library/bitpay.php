@@ -6,7 +6,7 @@
 class Bitpay {
 
 	/** @var int $version */
-	public $version = '2.0.0';
+	public $version = '2.2.x';
 
 	/** @var Registry $registry */
 	private $registry;
@@ -67,9 +67,9 @@ class Bitpay {
 
 		$client = $this->getClient();
 		$token = $client->createToken(array(
-			'facade'	  => 'merchant',
-			'label'	   => $label,
-			'id'		  => (string)$this->getPublicKey()->getSin(),
+			'facade' => 'merchant',
+			'label'  => $label,
+			'id'     => (string)$this->getPublicKey()->getSin(),
 		));
 
 		$this->setting('connection', 'connecting');
@@ -145,7 +145,7 @@ class Bitpay {
 		$network = $this->getNetwork($network);
 
 		$curl_options = array();
-		if ($network instanceof Bitpay\Network\Customnet) {
+		if ($network instanceof \Bitpay\Network\Customnet) {
 
 			//Customize the curl options
 			$curl_options = array(
@@ -154,12 +154,12 @@ class Bitpay {
 			);
 
 		}
-		$adapter = new Bitpay\Client\Adapter\CurlAdapter($curl_options);
+		$adapter = new \Bitpay\Client\Adapter\CurlAdapter($curl_options);
 
 		$private_key = $this->getPrivateKey();
 		$public_key = $this->getPublicKey();
 
-		$client = new Bitpay\Client\Client();
+		$client = new \Bitpay\Client\Client();
 		$client->setPrivateKey($private_key);
 		$client->setPublicKey($public_key);
 		$client->setNetwork($network);
@@ -205,16 +205,16 @@ class Bitpay {
 		$network = (empty($network)) ? $this->setting('network') : $network;
 		$this->log('trace', 'Getting Network: ' . var_export($network, true));
 		if ($network === 'livenet') {
-			return new Bitpay\Network\Livenet();
+			return new \Bitpay\Network\Livenet();
 		} elseif ($network === 'testnet') {
-			return new Bitpay\Network\Testnet();
+			return new \Bitpay\Network\Testnet();
 		} elseif (is_array($network)) {
 			if (isset($network['url']) && isset($network['port']) && isset($network['port_required'])) {
-				return new Bitpay\Network\Customnet($network['url'], (int)$network['port'], (boolean)$network['port_required']);
+				return new \Bitpay\Network\Customnet($network['url'], (int)$network['port'], (boolean)$network['port_required']);
 			}
 		}
 		$this->setting('network', 'livenet');
-		return new Bitpay\Network\Livenet();
+		return new \Bitpay\Network\Livenet();
 	}
 
 	/**
@@ -235,11 +235,11 @@ class Bitpay {
 		$private_key = @unserialize($this->encryption->decrypt($private_key));
 
 		// Check for key integrity
-		if (!($private_key instanceof Bitpay\PrivateKey)) {
+		if (!($private_key instanceof \Bitpay\PrivateKey)) {
 			$this->log('error', sprintf($this->language->get('log_private_key_wrong_type'), gettype($private_key)));
 			$this->log('trace', sprintf($this->language->get('log_encrypted_key'), $private_key));
 			$this->log('trace', sprintf($this->language->get('log_decrypted_key'), $this->encryption->decrypt($private_key)));
-			throw new UnexpectedValueException();
+			throw new \UnexpectedValueException();
 		}
 
 		return $private_key;
@@ -263,7 +263,7 @@ class Bitpay {
 		$public_key = @unserialize($this->encryption->decrypt($public_key));
 
 		// Check for key integrity
-		if (!($public_key instanceof Bitpay\PublicKey)) {
+		if (!($public_key instanceof \Bitpay\PublicKey)) {
 			$this->log('error', sprintf($this->language->get('log_public_key_wrong_type'), gettype($public_key)));
 			$this->log('trace', sprintf($this->language->get('log_encrypted_key'), $public_key));
 			$this->log('trace', sprintf($this->language->get('log_decrypted_key'), $this->encryption->decrypt($public_key)));

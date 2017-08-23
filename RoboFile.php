@@ -81,7 +81,7 @@ class RoboFile extends \Robo\Tasks
     	if (!file_exists(__DIR__.'/tests/phpcs/OpenCart/ruleset.xml')) {
     		$this->setuptest();
     	}
-        $this->taskExec('phpcs')->arg('src')->arg('--standard='.__DIR__.'/tests/phpcs/OpenCart/ruleset.xml')->run();
+        $this->taskExec('bin/phpcs')->arg('src')->arg('--standard='.__DIR__.'/tests/phpcs/OpenCart/ruleset.xml')->run();
     }
 
     public function server()
