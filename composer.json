@@ -27,10 +27,8 @@
         "opencart/opencart" : "2.3.0.2",
         "vlucas/phpdotenv": "~1.1.0"
     },
-    "minimum-stability": "stable",
     "config": {
-        "bin-dir": "bin/",
-        "preferred-install": "source"
+        "bin-dir": "bin/"
     },
     "extra" : {
         "src-dir" : "src/upload" ,
