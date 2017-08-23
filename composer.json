@@ -1,5 +1,5 @@
 {
-    "name": "bitpay/opencart-plugin",
+    "name": "beyondit/opencart-plugin",
     "description": "BitPay Payment Method for OpenCart",
     "type": "opencart-extension",
     "keywords": ["bitcoin", "bitpay", "opencart", "payment", "btc", "xbt"],
