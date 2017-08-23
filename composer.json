@@ -1,7 +1,6 @@
 {
     "name": "bitpay/opencart-plugin",
     "description": "BitPay Payment Method for OpenCart",
-    "version": "0.0.1",
     "type": "opencart-extension",
     "keywords": ["bitcoin", "bitpay", "opencart", "payment", "btc", "xbt"],
     "homepage": "https://github.com/bitpay/opencart-plugin",
