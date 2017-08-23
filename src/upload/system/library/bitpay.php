@@ -123,7 +123,7 @@ class Bitpay {
 	 */
 	public function generateId() {
 		// Generate new keys
-		$private_key = new Bitpay\PrivateKey();
+		$private_key = new \Bitpay\PrivateKey();
 		$private_key->generate();
 		$public_key = $private_key->getPublicKey();
 
